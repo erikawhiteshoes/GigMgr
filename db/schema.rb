@@ -32,13 +32,13 @@ ActiveRecord::Schema.define(version: 20160831174340) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "street_1"
+    t.string   "street_1",   default: "", null: false
     t.string   "street_2"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "city",       default: "", null: false
+    t.string   "state",      default: "", null: false
+    t.string   "zip",        default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -61,13 +61,13 @@ ActiveRecord::Schema.define(version: 20160831174340) do
 
   create_table "gigs", force: :cascade do |t|
     t.integer  "location_id"
-    t.string   "name"
-    t.datetime "perform_at"
+    t.string   "name",           default: "",    null: false
+    t.datetime "performance_at"
     t.decimal  "fee"
-    t.string   "tax_type"
-    t.boolean  "double"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "tax_type",       default: "",    null: false
+    t.boolean  "double",         default: false, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "gigs", ["location_id"], name: "index_gigs_on_location_id", using: :btree
@@ -83,9 +83,9 @@ ActiveRecord::Schema.define(version: 20160831174340) do
   add_index "location_addresses", ["location_id"], name: "index_location_addresses_on_location_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       default: "", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_foreign_key "gigs", "locations"

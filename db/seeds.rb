@@ -8,4 +8,4 @@
 if Rails.env.development?
   pwd= 'admin@example.com'
   AdminUser.create!(email: pwd, password: pwd, password_confirmation: pwd)
-end
+ena

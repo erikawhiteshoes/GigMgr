@@ -1,9 +1,9 @@
-ActiveAdmin.register Address do
+ActiveAdmin.register Fee do
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
- permit_params %i[street_1 street_2 city state zip location_id]
+ permit_params :amount, :gig_id
 #
 # or
 #

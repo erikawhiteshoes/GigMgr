@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831174340) do
+ActiveRecord::Schema.define(version: 20160916152215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,11 +59,19 @@ ActiveRecord::Schema.define(version: 20160831174340) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "fees", force: :cascade do |t|
+    t.integer  "gig_id"
+    t.decimal  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "fees", ["gig_id"], name: "index_fees_on_gig_id", using: :btree
+
   create_table "gigs", force: :cascade do |t|
     t.integer  "location_id"
     t.string   "name",           default: "",    null: false
     t.datetime "performance_at"
-    t.decimal  "fee"
     t.string   "tax_type",       default: "",    null: false
     t.boolean  "double",         default: false, null: false
     t.datetime "created_at",                     null: false
@@ -88,6 +96,7 @@ ActiveRecord::Schema.define(version: 20160831174340) do
     t.datetime "updated_at",              null: false
   end
 
+  add_foreign_key "fees", "gigs"
   add_foreign_key "gigs", "locations"
   add_foreign_key "location_addresses", "addresses"
   add_foreign_key "location_addresses", "locations"

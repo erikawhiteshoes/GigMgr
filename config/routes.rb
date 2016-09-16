@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
+  get 'gigs', to: "gig_mgr#index"
   ActiveAdmin.routes(self)
+
+  get 'api/v1/gigs', to: 'api/v1/gigs#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
